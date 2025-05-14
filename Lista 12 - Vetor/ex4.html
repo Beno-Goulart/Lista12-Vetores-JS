@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Filme favorito <input type="text" name="" id="ipt_filme"><br>
+    <button onclick="cadastrar()">Cadastrar filme</button><br>
+    <button onclick="ver()">Ver Favoritos</button>
+    <div id="div"></div>
+</body>
+
+</html>
+<script>
+    var vt_filme = [];
+    var index = 0;
+    var i = 0;
+    function cadastrar() {
+        var filme = ipt_filme.value
+            alert(`Filme cadastrado`)
+            vt_filme.push(filme);
+            ipt_filme.value = "";
+            index++
+    }
+
+    function ver() {
+        div.innerHTML += `Total: ${index} <br>`
+        while (i != index) {
+            div.innerHTML += `${i+1}° filme favorito é ${vt_filme[i]}<br>`
+            i++
+        }
+        div.innerHTML += `O filme que mais gosta é ${vt_filme[0]}.<br>`
+        div.innerHTML += `E desses, o que menos gosta é ${vt_filme [vt_filme.length -1]}.<br>`
+    }
+</script>

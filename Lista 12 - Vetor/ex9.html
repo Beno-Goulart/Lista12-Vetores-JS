@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 9</title>
+</head>
+
+<body>
+    <h2>Registrador de Projetos</h2>
+    Nome <input type="text" name="" id="ipt_nome" placeholder="Insira o nome do projeto"><br><br>
+    <button onclick="registrar()">Registrar Projeto</button>
+    <button onclick="mostrar()">Mostrar Projetos</button><br>
+    <div id="div"></div>
+</body>
+
+</html>
+<script>
+    var vtProj = [];
+
+    function registrar() {
+        var nome = ipt_nome.value
+        var profissa = ""
+        vtProj.push(nome)
+        if (vtProj.length <= 4) {
+            profissa = "Júnior"
+            div.innerHTML += `Você já fez ${vtProj.length} projetos. Por isso você é um profissional ${profissa}<br>`
+            ipt_nome.value = "";
+        }
+
+        if (vtProj.length >= 5 && vtProj.length <= 12) {
+            profissa = "Pleno"
+            div.innerHTML += `Você já fez ${vtProj.length} projetos. Por isso você é um profissional ${profissa}<br>`
+            ipt_nome.value = "";
+        }
+
+        if (vtProj.length >= 13) {
+            profissa = "Sênior"
+            div.innerHTML += `Você já fez ${vtProj.length} projetos. Por isso você é um profissional ${profissa}<br>`
+            ipt_nome.value = "";
+        }
+
+    }
+    function mostrar() {
+        for (var index = vtProj.length - 1; index >= 0; index--) {
+            div.innerHTML += `${vtProj[index]}<br>`
+        }
+    }
+</script>

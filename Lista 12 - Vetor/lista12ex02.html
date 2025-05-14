@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lista12ex02</title>
+</head>
+
+<body>
+    <h1>BAIRROS</h1>
+    Cadastre o bairros que você já morou: <input id="ipt_bairro">
+    <br>
+    <button onclick="cadastrar()">Cadastrar Bairro</button>
+    <br>
+    Indique o local em que morou a paritr do número 1: <input id="ipt_numero" type="number">
+    <br>
+    <button onclick="relembrar()">Relembrar</button>
+    <br>
+    <div id="div_txt"></div>
+</body>
+
+</html>
+<script>
+    var vt_bairro = []
+    function cadastrar() {
+        var bairro = ipt_bairro.value
+        if (bairro == '' || bairro == Number) {
+            alert('Preencha o campo corretamente')
+        } else {
+            alert('Bairro Cadastrado')
+            vt_bairro.push(bairro)
+            ipt_bairro.value = '';
+            div_txt.innerHTML = ``;
+        }
+    }
+    function relembrar() {
+    var num = Number(ipt_numero.value) - 1;
+    if (num < 0) {
+        alert('Informe corretamente a sequência do bairro')
+    } else if (ipt_numero.value > vt_bairro.length) {
+        div_txt.innerHTML = `Você ainda não morou no ${ipt_numero.value}º bairro`
+    } else {
+        div_txt.innerHTML = `o ${ipt_numero.value}º bairro é o ${vt_bairro [num]}`
+    }
+num = ''
+    }
+</script>

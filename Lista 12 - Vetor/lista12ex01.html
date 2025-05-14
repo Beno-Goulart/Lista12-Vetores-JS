@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vetor</title>
+</head>
+
+<body>
+    <h1>DESTINO</h1>
+    Insira o seu destino de viagem: <input id="ipt_destino">
+    <br>
+    <button onclick="adicionar()">Adicionar</button>
+    <button onclick="primeira()">Primeira Viagem</button>
+    <button onclick="terceira()">Terceira Viagem</button>
+    <button onclick="ultima()">Última Viagem</button>
+    <br>
+    <div id="div_txt"></div>
+</body>
+
+</html>
+<script>
+
+    var vt_destino = []
+   
+
+    function adicionar() {
+        var destino = ipt_destino.value
+        if (destino == '') {
+            alert('Favor preencher o destino')
+            
+        } else { 
+            
+            alert ('Destino incluido no cadastro')
+            vt_destino.push(destino);
+            ipt_destino.value = '';
+            div_txt.innerHTML = '';
+        }
+    }
+    function primeira() {
+        var destino = ipt_destino.value
+        
+        if (vt_destino.length > 0) {
+            div_txt.innerHTML = `A sua primeira viagem foi para ${vt_destino[0]}`
+
+        } else { div_txt.innerHTML = `Ainda não viajou` }
+    }
+    function terceira() {
+        var destino = ipt_destino.value
+
+        if (vt_destino.length >= 3) {
+            div_txt.innerHTML = `A sua terceira viagem foi para ${vt_destino[2]}`
+        } else { div_txt.innerHTML = `Ainda não fez a terceira viagem` }
+    }
+    function ultima() {
+        var destino = ipt_destino.value
+
+        if (vt_destino.length > 0) {
+            div_txt.innerHTML = ` A sua ultima viagem foi para ${vt_destino [vt_destino.length -1]}`
+        } else { div_txt.innerHTML = `Ainda não fez nenhuma viagem` }
+
+    }
+
+</script>

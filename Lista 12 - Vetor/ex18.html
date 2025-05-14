@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 18</title>
+</head>
+
+<body>
+    <h2>Suas Músicas</h2>
+    Nome das músicas <input placeholder="que mais gosta" type="text" name="" id="ipt_musica"><br><br>
+    de <input placeholder="Ex: 1" type="number" name="" id="ipt_inicio">
+    até <input placeholder="Ex: 5" type="number" name="" id="ipt_final"><br><br>
+
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="exibir()">Exibir</button>
+    <button onclick="filtrar()">Filtrar</button><br>
+    <div id="div"></div>
+</body>
+
+</html>
+
+<script>
+    var vt_musica = [];
+    var i = 1;
+
+    function cadastrar() {
+        var musica = ipt_musica.value;
+        if (musica == "") {
+            div.innerHTML += `<span style="color:red"> Digite o nome da música! <br>`
+        } else {
+            vt_musica.push(musica)
+            div.innerHTML = "";
+            ipt_musica.value = "";
+            div.innerHTML += `${i}° Música cadastrada com sucesso! <br>`
+            i++
+        }
+    }
+
+    function exibir() {
+        div.innerHTML = "";
+        for (var index = 0; index < vt_musica.length; index++) {
+            div.innerHTML += `${index + 1}° música: ${vt_musica[index]}<br>`
+        }
+    }
+
+    function filtrar() {
+        var ax_inicio = ipt_inicio.value;
+        var ax_final = ipt_final.value;
+        if (ax_inicio == "" || ax_final == "" || ax_inicio < 1 || ax_final > vt_musica.length || ax_inicio > ax_final) {
+            div.innerHTML = `<span style="color:red"> Informe um intervalo válido entre 1 e ${listaMusicas.length}!`;
+        } else {
+            div.innerHTML = "";
+            ipt_inicio.value = "";
+            ipt_final.value = "";
+            for (var index = ax_inicio - 1; index < ax_final; index++) {
+                div.innerHTML += `${index + 1}° música favorita: ${vt_musica[index]}<br>`
+            }
+        }
+    }
+</script>

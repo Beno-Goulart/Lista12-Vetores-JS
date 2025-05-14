@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 15</title>
+</head>
+
+<body>
+    <h2>Cadastro de Produtos para Revenda</h2>
+    Nome <input placeholder="Nome do Produto" type="text" name="" id="ipt_nome">
+    Preço <input placeholder="Preço do Produto" type="number" name="" id="ipt_preco"><br><br>
+
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="estoque()">Relatório de Estoque</button><br>
+    <div id="div"></div>
+</body>
+
+</html>
+
+<script>
+    var vt_nomes = [];
+    var vt_preco = [];
+    var i = 1;
+
+    function cadastrar() {
+        if (ipt_nome.value == "") {
+            div.innerHTML += `<span style="color:red"> Campo "Nome" do produto não pode estar vazio! <br>`
+        } else if (ipt_preco.value == "") {
+            div.innerHTML += `<span style="color:red"> Campo "Preço" do produto não pode estar vazio! <br>`
+        } else {
+            var ax_nome = ipt_nome.value
+            var ax_preco = ipt_preco.value
+            vt_nomes.push(ax_nome)
+            vt_preco.push(ax_preco)
+            ipt_nome.value = ""
+            ipt_preco.value = ""
+            div.innerHTML = ""
+            div.innerHTML += `${i}° Produto cadastrado com sucesso! <br>`
+            i++
+        }
+    }
+    function estoque() {
+        div.innerHTML = `Total de produtos: ${vt_nomes.length}<br>`
+        for (var index = 0; index < vt_nomes.length; index++) {
+            div.innerHTML += `Produto ${index + 1}: ${vt_nomes[index]}<br>
+            Preço de Compra: R$${vt_preco[index]}. Vender por R$${vt_preco[index] * 1.25}  <br>`
+        }
+    }
+</script>

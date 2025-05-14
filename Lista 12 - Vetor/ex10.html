@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 10</title>
+</head>
+
+<body>
+    Linhas <input type="text" name="" id="ipt_linhas"><br>
+    Pesquisar <input type="text" name="" id="ipt_pesquisa"><br>
+    <button onclick="garvar()">Gravar Busão</button>
+    <button onclick="pesquisar()">Pesquisar</button><br>
+    <div id="div"></div>
+</body>
+
+</html>
+<script>
+    vtLinha = []
+    var vtPesquisa = []
+    function garvar() {
+        var linha = ipt_linhas.value;
+        vtLinha.push(linha)
+        ipt_linhas.value = ""
+        for (var index = vtLinha.length - 1; index >= 0; index--) {
+            div.innerHTML += `${vtLinha[index]}<br>`
+        }
+    }
+    function pesquisar() {
+        var pesquisar = ipt_pesquisa.value;
+        for (var index = 0; index <= vtLinha.length; index++) {
+            if (pesquisar == vtLinha[index]) {
+                vtPesquisa.push(index)
+                div.innerHTML = `Você já pegou essa linha ${vtPesquisa.length} vezes, nessa ordem: `
+            }
+
+        }
+        for (var i = 0; i < vtPesquisa.length; i++) {
+            div.innerHTML += `${vtPesquisa[i]}, `
+
+        }
+    }
+</script>
