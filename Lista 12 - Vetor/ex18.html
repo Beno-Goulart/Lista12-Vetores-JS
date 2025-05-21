@@ -49,7 +49,7 @@
         var ax_inicio = ipt_inicio.value;
         var ax_final = ipt_final.value;
         if (ax_inicio == "" || ax_final == "" || ax_inicio < 1 || ax_final > vt_musica.length || ax_inicio > ax_final) {
-            div.innerHTML = `<span style="color:red"> Informe um intervalo válido entre 1 e ${listaMusicas.length}!`;
+            div.innerHTML = `<span style="color:red"> Informe um intervalo válido entre 1 e ${vt_musica.length}!`;
         } else {
             div.innerHTML = "";
             ipt_inicio.value = "";

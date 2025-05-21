@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 20</title>
+</head>
+
+<body>
+    <H2>Gerenciamento de Produtos</H2>
+    Nome do Produto <input placeholder="Ex: Banana" type="text" name="" id="ipt_produto"><br><br>
+    Preço <input placeholder="R$1" type="number" name="" id="ipt_preco"><br><br>
+    <select name="" id="sel_filtro">
+        <option value="sel_acima">Preços acima de</option>
+        <option value="sel_abaixo">Preços abaixo de</option>
+    </select>
+    Valor <input placeholder="Ex: 5" type="number" name="" id="ipt_valor"><br><br>
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="exibir()">Atualizar Estoque</button>
+    <button onclick="filtrar()">Filtrar Produtos</button>
+    <div id="div"></div><br>
+</body>
+
+</html>
+<script>
+    var vt_produto = [];
+    var vt_preco = [];
+    var i = 1;
+
+    function cadastrar() {
+        var produto = ipt_produto.value;
+        var preco = ipt_preco.value;
+        if (produto == "" || preco == "") {
+            div.innerHTML += `<span style="color:red"> Preencha ambos os campos! <br>`
+        } else if (produto.length < 3) {
+            div.innerHTML += `<span style="color:red"> Produto Invalido! <br>`
+        } else if (preco < 0) {
+            div.innerHTML += `<span style="color:red"> Preço Invalido! <br>`
+        } else {
+            vt_produto.push(produto)
+            vt_preco.push(preco)
+            ipt_produto.value = "";
+            ipt_preco.value = "";
+            div.innerHTML += `${i}° Produto cadastrado com sucesso! <br>`
+            i++
+        }
+    }
+
+    function exibir() {
+        div.innerHTML = `Você tem ${vt_produto.length} produtos cadastrados em estoque: <br>`
+        for (var index = 0; index < vt_produto.length; index++) {
+            div.innerHTML += `${index + 1}. ${vt_produto[index]} - ${vt_preco[index]}<br>`
+        }
+    }
+
+    function filtrar() {
+        var filtro = sel_filtro.value;
+        var valor = Number(ipt_valor.value);
+
+        if (filtro == "") {
+            div.innerHTML = `<span style="color:red">Por favor, selecione uma das opções de filtro.</span>`;
+        } else if (valor < 1) {
+            div.innerHTML += `<span style="color:red">Por favor, insira um valor válido.</span>`;
+        } else {
+            var filtrado = [];
+
+            for (var i = 0; i < vt_preco.length; i++) {
+                var preco = Number(vt_preco[i]);
+
+                if (filtro == "sel_acima" && preco > valor) {
+                    filtrado.push(`${vt_produto[i]} - R$${preco}`);
+                } else if (filtro == "sel_abaixo" && preco < valor) {
+                    filtrado.push(`${vt_produto[i]} - R$${preco}`);
+                }
+            }
+
+            if (filtrado.length == 0) {
+                div.innerHTML = "Nenhum produto encontrado com esse critério.";
+            } else {
+                div.innerHTML = "Produtos encontrados:<br>";
+                for (var index = 0; index < filtrado.length; index++) {
+                    div.innerHTML += `${index + 1}. ${filtrado[index]}<br>`;
+                }
+
+            }
+        }
+    }
+
+</script>
